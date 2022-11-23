@@ -15,5 +15,3 @@ class TweetSentiment:
         scores = output[0][0].detach().numpy()
         probabilities = softmax(scores)
         return ' '.join(map(lambda x: str(x), probabilities))
-        
-#print(getSentimentOf('He is a good man but he is poor.'))
