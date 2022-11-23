@@ -16,7 +16,7 @@ Structure and Tech Stack is as follows:
 
 
 
-TweetsProducerKafka: Java Maven project with kafka producer that accesses the twitter API V2 and sends data about tweets to kafka topic.
+TweetsProducerKafka: Java Maven project with kafka producer that accesses the twitter API V2 and sends data about tweets to kafka topic. Replace the bearer token inside TwitterConfigs.java with proper bearer token of a twitter developer account to connect to the API.
 
 SentimentAnalyserRoberta: REST API developed wiht FastAPI in python to access the ROBERTA sentiment analysis machine-learning model. IT accepts the text of the tweet     and return the probablity scores of tweet being negative, neutral or positive
 
