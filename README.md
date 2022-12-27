@@ -7,7 +7,7 @@ Structure and Tech Stack is as follows:
 
 						      (Java)            (Java)            	(Java, Springboot)
 					Twitter API----->Apache Kafka------>Apache Spark------------------>Postgres
-									    ||\		GRPC
+									    ||\			GRPC
 									    ||
 									    ||
 									    ||
@@ -33,4 +33,4 @@ TweetProcessorSpark: Java maven project with kafka consumers that picks up tweet
   
   You must have the additional jars mentioned in the command in the project directory
   
-TweetsSentimentPersistence: Java Springboot Rest API that persists the tweets analysis data in a postgres database.
+TweetsSentimentPersistence: Java Springboot GRPC Server that persists the tweets analysis data in a postgres database.
