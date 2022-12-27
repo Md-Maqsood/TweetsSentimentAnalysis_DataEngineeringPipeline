@@ -18,11 +18,14 @@ spring:
           characterEncoding: utf-8
           CharSet: utf-8
           useUnicode: true
-server:
-  servlet:
-    encoding:
-      charset: UTF-8
-      force: true
-      enabled: true
-  tomcat:
-    uri-encoding: UTF-8
+#server:
+#  servlet:
+#    encoding:
+#      charset: UTF-8
+#      force: true
+#      enabled: true
+#  tomcat:
+#    uri-encoding: UTF-8
+grpc:
+  server:
+    port: 9000

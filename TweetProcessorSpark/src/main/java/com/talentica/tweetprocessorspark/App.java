@@ -1,7 +1,5 @@
 package com.talentica.tweetprocessorspark;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -17,25 +15,32 @@ import org.apache.spark.streaming.kafka010.LocationStrategies;
 
 public class App {
 
-	private static final Integer BUFFER = 60;	
-		
+	private static final Integer BUFFER = 30;
+	
+	private static final int SERVER_PORT = 9000;
+	
+	private static final String SERVER_ADDRESS = "localhost";
+			
 	public static void main(String[] args) {
+				
+		SparkConf conf = new SparkConf().setMaster("local[*]").setAppName("SparkKafkaTwitter");
 		
-		SparkConf conf = new SparkConf().setMaster("local[2]").setAppName("SparkKafkaTwitter");
 		JavaStreamingContext streamingContext = new JavaStreamingContext(conf, Durations.seconds(BUFFER));
+				
+		JavaInputDStream<ConsumerRecord<String, String>> messageStream = KafkaUtils.createDirectStream(
+				streamingContext,
+				LocationStrategies.PreferConsistent(),
+				ConsumerStrategies.<String, String>Subscribe(
+						Arrays.asList("Twitter-Messages"),
+						Arrays.stream(new Object[][] {
+							{"bootstrap.servers","localhost:9092"},
+							{"key.deserializer",StringDeserializer.class},
+							{"value.deserializer",StringDeserializer.class},
+							{"group.id","id1"},
+							{"auto.offset.reset","latest"},
+							{"enable.auto.commit","false"}
+						}).collect(Collectors.toMap(entry->(String)entry[0], entry->entry[1]))));
 		
-		JavaInputDStream<ConsumerRecord<String, String>> messageStream = KafkaUtils.createDirectStream(streamingContext,
-																					LocationStrategies.PreferConsistent(),
-																					ConsumerStrategies.<String, String>Subscribe(
-																										Arrays.asList("Twitter-Messages"),
-																										Arrays.stream(new Object[][] {
-																											{"bootstrap.servers","localhost:9092"},
-																											{"key.deserializer",StringDeserializer.class},
-																											{"value.deserializer",StringDeserializer.class},
-																											{"group.id","id1"},
-																											{"auto.offset.reset","latest"},
-																											{"enable.auto.commit","false"}
-																										}).collect(Collectors.toMap(entry->(String)entry[0], entry->entry[1]))));
 		messageStream.map(record-> record.value().split("\\-\\|\\|\\-"))
 		.<String[]>map(tweet->{
 			String tweetText = Arrays.stream(tweet[1].split(" ")).map((word)->{
@@ -49,22 +54,18 @@ public class App {
 								tweet[2],
 								tweet[3],
 								sentiment.substring(1, sentiment.length()-1)};
-		}).foreachRDD(javaRdd->{javaRdd.collect().forEach(tweet->{
-//				writer.write(Arrays.stream(tweet).collect(Collectors.joining("\n"))+"\n-----\n");
-				String[] sentiments = tweet[4].split(" ");
-				try {
-					ExternalAPIServices.saveTweetData(tweet[0],
-								tweet[1],
-								tweet[2],
-								tweet[3],
-								Double.parseDouble(sentiments[0]),
-								Double.parseDouble(sentiments[1]),
-								Double.parseDouble(sentiments[2]));
-				} catch (NumberFormatException | URISyntaxException | IOException e) {
-					e.printStackTrace();
-				}
-			
-		});});
+		}).foreachRDD((javaRdd) -> { new GrpcPersistenceService(SERVER_ADDRESS, SERVER_PORT).saveTweetsData(javaRdd.collect());});
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+
+			@Override
+			public void run() {
+				System.out.println("Stopping spark app..");
+				streamingContext.close();
+				System.out.println("Spark application stopped. Exiting application.");
+			}
+        	
+        });
 		
 		streamingContext.start();
 		try {

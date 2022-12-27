@@ -1,0 +1,5 @@
+com\talentica\tweetsproducerkafka\KafkaConfigs.class
+com\talentica\tweetsproducerkafka\TwitterConfigs.class
+com\talentica\tweetsproducerkafka\TwitterClientUtil.class
+com\talentica\tweetsproducerkafka\App.class
+com\talentica\tweetsproducerkafka\KafkaMessageProducer.class

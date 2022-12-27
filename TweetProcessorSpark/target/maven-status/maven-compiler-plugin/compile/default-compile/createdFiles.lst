@@ -1,2 +1,5 @@
 com\talentica\tweetprocessorspark\App.class
+com\talentica\tweetprocessorspark\App$1.class
+com\talentica\tweetprocessorspark\GrpcPersistenceService$1.class
 com\talentica\tweetprocessorspark\ExternalAPIServices.class
+com\talentica\tweetprocessorspark\GrpcPersistenceService.class

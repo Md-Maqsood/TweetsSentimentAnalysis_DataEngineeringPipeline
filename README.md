@@ -5,13 +5,17 @@ The data pipeline live streams tweets based on keywords in a keywords file (curr
 Structure and Tech Stack is as follows:
 
 
-                                              (Java)            (Java)            (Java, Springboot)
-                          Twitter API----->Apache Kafka------>Apache Spark----------->(Postgres)
-                                                                    ||\
+                                              (Java)            (Java)            	(Java, Springboot)
+                          Twitter API----->Apache Kafka------>Apache Spark------------------>Postgres
+                                                                    ||\		GRPC
                                                                     ||
+								    ||
+								    ||
+								    || REST
+								    ||
                                                                     ||
                                                                    \||
-                                                    (Sentiment Analysis Model Roberta)
+                                                    Sentiment Analysis Model Roberta
                                                             (Python, FastAPI)
 
 
