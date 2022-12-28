@@ -7,9 +7,15 @@ message TweetData {
 	string text = 2;
 	string authorId = 3;
 	string createdAt = 4;
-	double negativeScore = 5;
-	double neutralScore = 6;
-	double positiveScore = 7;
+	string userName = 5;
+	string userHandle = 6;
+	string userLocation = 7;
+	bool isVerified = 8;
+	int32 followersCount = 9;
+	int32 tweetCount = 10;
+	double negativeScore = 11;
+	double neutralScore = 12;
+	double positiveScore = 13;
 }
 
 message SaveResponse {

@@ -22,6 +22,24 @@ public class Tweet {
 	@Column(name = "created_at")
 	private String createdAt;
 	
+	@Column(name = "user_name")
+	private String userName;
+	
+	@Column(name = "user_handle")
+	private String userHandle;
+	
+	@Column(name = "user_location")
+	private String userLocation;
+	
+	@Column(name = "is_verified")
+	private Boolean isVerified;
+	
+	@Column(name = "followers_count")
+	private Integer followersCount;
+	
+	@Column(name = "tweet_count")
+	private Integer tweetCount;
+	
 	@Column(name = "negative_score")
 	private Double negativeScore;
 	
@@ -65,6 +83,54 @@ public class Tweet {
 		this.createdAt = createdAt;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserHandle() {
+		return userHandle;
+	}
+
+	public void setUserHandle(String userHandle) {
+		this.userHandle = userHandle;
+	}
+
+	public String getUserLocation() {
+		return userLocation;
+	}
+
+	public void setUserLocation(String userLocation) {
+		this.userLocation = userLocation;
+	}
+
+	public Boolean getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(Boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	public Integer getFollowersCount() {
+		return followersCount;
+	}
+
+	public void setFollowersCount(Integer followersCount) {
+		this.followersCount = followersCount;
+	}
+
+	public Integer getTweetCount() {
+		return tweetCount;
+	}
+
+	public void setTweetCount(Integer tweetCount) {
+		this.tweetCount = tweetCount;
+	}
+
 	public Double getNegativeScore() {
 		return negativeScore;
 	}
@@ -89,16 +155,22 @@ public class Tweet {
 		this.positiveScore = positiveScore;
 	}
 
-	public Tweet(String id, String text, String authorId, String createdAt, Double negativeScore, Double neutralScore,
-			Double positiveScore) {
+	public Tweet(String id, String text, String authorId, String createdAt, String userName, String userHandle,
+			String userLocation, Boolean isVerified, Integer followersCount, Integer tweetCount, Double negativeScore,
+			Double neutralScore, Double positiveScore) {
 		super();
 		this.id = id;
 		this.text = text;
 		this.authorId = authorId;
 		this.createdAt = createdAt;
+		this.userName = userName;
+		this.userHandle = userHandle;
+		this.userLocation = userLocation;
+		this.isVerified = isVerified;
+		this.followersCount = followersCount;
+		this.tweetCount = tweetCount;
 		this.negativeScore = negativeScore;
 		this.neutralScore = neutralScore;
 		this.positiveScore = positiveScore;
 	}
-	
 }

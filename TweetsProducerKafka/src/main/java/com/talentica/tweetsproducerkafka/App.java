@@ -23,15 +23,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class App {
-	
-	private static final String KEYWORDS_FILE_PATH="keywords.txt";
+
+	private static final String KEYWORDS_FILE_PATH = "keywords.txt";
 
 	private static KafkaProducer<String, String> kafkaProducer;
 
 	public static void main(String[] args) {
 		kafkaProducer = KafkaMessageProducer.getNewKafkaProducer();
 		Map<String, String> rules = new HashMap<>();
-		rules.put("("+getWordsToTrack().replace(" "," OR ").replace("-"," ")+") -is:retweet -is:nullcast","economy");
+		rules.put("(" + getWordsToTrack().replace(" ", " OR ").replace("-", " ") + ") -is:retweet -is:nullcast",
+				"economy");
 		try {
 			TwitterClientUtil.setupRules(TwitterConfigs.BEARER_TOKEN, rules);
 			connectStream(TwitterConfigs.BEARER_TOKEN);
@@ -39,15 +40,16 @@ public class App {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private static void connectStream(String bearerToken) throws IOException, URISyntaxException {
 
 		HttpClient httpClient = HttpClients.custom()
 				.setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build()).build();
 
-		URIBuilder uriBuilder = new URIBuilder("https://api.twitter.com/2/tweets/search/stream?tweet.fields=created_at&expansions=author_id");
+		URIBuilder uriBuilder = new URIBuilder(
+				"https://api.twitter.com/2/tweets/search/stream?tweet.fields=created_at&expansions=author_id&user.fields=location,name,username,verified,public_metrics");
 
 		HttpGet httpGet = new HttpGet(uriBuilder.build());
 		httpGet.setHeader("Authorization", String.format("Bearer %s", bearerToken));
@@ -58,26 +60,36 @@ public class App {
 			BufferedReader reader = new BufferedReader(new InputStreamReader((entity.getContent())));
 			String line = reader.readLine();
 			while (line != null) {
+				System.out.println(line);
 				try {
 					JSONObject data = new JSONObject(line);
 					JSONObject tweet = data.getJSONObject("data");
-					String authorId = (String)tweet.get("author_id");
-					String tweetId = (String)tweet.get("id");
-					String createdAt = (String)tweet.get("created_at");
-					String tweetText = (String)tweet.get("text");
-					String msg = tweetId+"-||-"+tweetText+"-||-"+authorId+"-||-"+createdAt;
+					String authorId = (String) tweet.get("author_id");
+					String tweetId = (String) tweet.get("id");
+					String createdAt = (String) tweet.get("created_at");
+					String tweetText = (String) tweet.get("text");
+					JSONObject userObject = data.getJSONObject("includes").getJSONArray("users").getJSONObject(0);
+					String location = userObject.has("location") ? (String) userObject.get("location") : "Unknown";
+					String name = (String) userObject.get("name");
+					String username = (String) userObject.get("username");
+					Boolean verified = (Boolean) userObject.get("verified");
+					Integer followersCount = (Integer) userObject.getJSONObject("public_metrics")
+							.get("followers_count");
+					Integer tweetCount = (Integer) userObject.getJSONObject("public_metrics").get("tweet_count");
+					String msg = tweetId + "-||-" + tweetText + "-||-" + authorId + "-||-" + createdAt + "-||-"
+							+ location + "-||-" + name + "-||-" + username + "-||-" + verified.toString() + "-||-"
+							+ followersCount.toString() + "-||-" + tweetCount.toString();
 //					System.out.println(msg);
 					kafkaProducer.send(new ProducerRecord<String, String>(KafkaConfigs.TOPIC, msg));
-					}
-				catch(JSONException e) {
-					System.out.println(e.getMessage()+", Line: "+line);
+				} catch (JSONException e) {
+					System.out.println(e.getMessage() + "Line: " + line);
 				}
 				line = reader.readLine();
 			}
 		}
 		System.out.println("Application ended");
 	}
-	
+
 	private static String getWordsToTrack() {
 		try (BufferedReader reader = new BufferedReader(new FileReader(KEYWORDS_FILE_PATH))) {
 			return reader.readLine();

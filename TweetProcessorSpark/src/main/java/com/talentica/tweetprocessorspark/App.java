@@ -53,6 +53,12 @@ public class App {
 								tweet[1],
 								tweet[2],
 								tweet[3],
+								tweet[4],
+								tweet[5],
+								tweet[6],
+								tweet[7],
+								tweet[8],
+								tweet[9],
 								sentiment.substring(1, sentiment.length()-1)};
 		}).foreachRDD((javaRdd) -> { new GrpcPersistenceService(SERVER_ADDRESS, SERVER_PORT).saveTweetsData(javaRdd.collect());});
 		

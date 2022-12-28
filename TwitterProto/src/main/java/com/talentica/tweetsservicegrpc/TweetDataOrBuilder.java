@@ -48,17 +48,62 @@ public interface TweetDataOrBuilder extends
       getCreatedAtBytes();
 
   /**
-   * <code>double negativeScore = 5;</code>
+   * <code>string userName = 5;</code>
+   */
+  java.lang.String getUserName();
+  /**
+   * <code>string userName = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getUserNameBytes();
+
+  /**
+   * <code>string userHandle = 6;</code>
+   */
+  java.lang.String getUserHandle();
+  /**
+   * <code>string userHandle = 6;</code>
+   */
+  com.google.protobuf.ByteString
+      getUserHandleBytes();
+
+  /**
+   * <code>string userLocation = 7;</code>
+   */
+  java.lang.String getUserLocation();
+  /**
+   * <code>string userLocation = 7;</code>
+   */
+  com.google.protobuf.ByteString
+      getUserLocationBytes();
+
+  /**
+   * <code>bool isVerified = 8;</code>
+   */
+  boolean getIsVerified();
+
+  /**
+   * <code>int32 followersCount = 9;</code>
+   */
+  int getFollowersCount();
+
+  /**
+   * <code>int32 tweetCount = 10;</code>
+   */
+  int getTweetCount();
+
+  /**
+   * <code>double negativeScore = 11;</code>
    */
   double getNegativeScore();
 
   /**
-   * <code>double neutralScore = 6;</code>
+   * <code>double neutralScore = 12;</code>
    */
   double getNeutralScore();
 
   /**
-   * <code>double positiveScore = 7;</code>
+   * <code>double positiveScore = 13;</code>
    */
   double getPositiveScore();
 }

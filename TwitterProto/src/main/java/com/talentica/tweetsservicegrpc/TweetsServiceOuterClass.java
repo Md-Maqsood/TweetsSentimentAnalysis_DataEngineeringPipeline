@@ -33,15 +33,18 @@ public final class TweetsServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023TweetsService.proto\"\216\001\n\tTweetData\022\n\n\002i" +
+      "\n\023TweetsService.proto\"\212\002\n\tTweetData\022\n\n\002i" +
       "d\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\022\020\n\010authorId\030\003 \001(\t\022" +
-      "\021\n\tcreatedAt\030\004 \001(\t\022\025\n\rnegativeScore\030\005 \001(" +
-      "\001\022\024\n\014neutralScore\030\006 \001(\001\022\025\n\rpositiveScore" +
-      "\030\007 \001(\001\"\037\n\014SaveResponse\022\017\n\007isSaved\030\001 \001(\0102" +
-      "d\n\rTweetsService\022&\n\tsaveTweet\022\n.TweetDat" +
-      "a\032\r.SaveResponse\022+\n\nsaveTweets\022\n.TweetDa" +
-      "ta\032\r.SaveResponse(\0010\001B#\n\037com.talentica.t" +
-      "weetsservicegrpcP\001b\006proto3"
+      "\021\n\tcreatedAt\030\004 \001(\t\022\020\n\010userName\030\005 \001(\t\022\022\n\n" +
+      "userHandle\030\006 \001(\t\022\024\n\014userLocation\030\007 \001(\t\022\022" +
+      "\n\nisVerified\030\010 \001(\010\022\026\n\016followersCount\030\t \001" +
+      "(\005\022\022\n\ntweetCount\030\n \001(\005\022\025\n\rnegativeScore\030" +
+      "\013 \001(\001\022\024\n\014neutralScore\030\014 \001(\001\022\025\n\rpositiveS" +
+      "core\030\r \001(\001\"\037\n\014SaveResponse\022\017\n\007isSaved\030\001 " +
+      "\001(\0102d\n\rTweetsService\022&\n\tsaveTweet\022\n.Twee" +
+      "tData\032\r.SaveResponse\022+\n\nsaveTweets\022\n.Twe" +
+      "etData\032\r.SaveResponse(\0010\001B#\n\037com.talenti" +
+      "ca.tweetsservicegrpcP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -60,7 +63,7 @@ public final class TweetsServiceOuterClass {
     internal_static_TweetData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TweetData_descriptor,
-        new java.lang.String[] { "Id", "Text", "AuthorId", "CreatedAt", "NegativeScore", "NeutralScore", "PositiveScore", });
+        new java.lang.String[] { "Id", "Text", "AuthorId", "CreatedAt", "UserName", "UserHandle", "UserLocation", "IsVerified", "FollowersCount", "TweetCount", "NegativeScore", "NeutralScore", "PositiveScore", });
     internal_static_SaveResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_SaveResponse_fieldAccessorTable = new

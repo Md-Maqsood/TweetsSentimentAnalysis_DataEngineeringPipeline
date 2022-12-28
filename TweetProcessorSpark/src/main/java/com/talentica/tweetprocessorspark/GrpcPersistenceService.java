@@ -42,12 +42,18 @@ public class GrpcPersistenceService {
 		});
 		 
 		 tweetsdata.forEach((tweetdata)->{
-			 String[] sentiments = tweetdata[4].split(" ");
+			 String[] sentiments = tweetdata[10].split(" ");
 			 streamObserver.onNext(TweetData.newBuilder()
 						.setId(tweetdata[0])
 						.setText(tweetdata[1])
 						.setAuthorId(tweetdata[2])
 						.setCreatedAt(tweetdata[3])
+						.setUserLocation(tweetdata[4])
+						.setUserName(tweetdata[5])
+						.setUserHandle(tweetdata[6])
+						.setIsVerified(Boolean.parseBoolean(tweetdata[7]))
+						.setFollowersCount(Integer.parseInt(tweetdata[8]))
+						.setTweetCount(Integer.parseInt(tweetdata[9]))
 						.setNegativeScore(Double.parseDouble(sentiments[0]))
 						.setNeutralScore(Double.parseDouble(sentiments[1]))
 						.setPositiveScore(Double.parseDouble(sentiments[2]))

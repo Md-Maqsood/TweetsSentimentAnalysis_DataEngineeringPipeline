@@ -20,6 +20,12 @@ private static final long serialVersionUID = 0L;
     text_ = "";
     authorId_ = "";
     createdAt_ = "";
+    userName_ = "";
+    userHandle_ = "";
+    userLocation_ = "";
+    isVerified_ = false;
+    followersCount_ = 0;
+    tweetCount_ = 0;
     negativeScore_ = 0D;
     neutralScore_ = 0D;
     positiveScore_ = 0D;
@@ -73,17 +79,50 @@ private static final long serialVersionUID = 0L;
             createdAt_ = s;
             break;
           }
-          case 41: {
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            userName_ = s;
+            break;
+          }
+          case 50: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            userHandle_ = s;
+            break;
+          }
+          case 58: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            userLocation_ = s;
+            break;
+          }
+          case 64: {
+
+            isVerified_ = input.readBool();
+            break;
+          }
+          case 72: {
+
+            followersCount_ = input.readInt32();
+            break;
+          }
+          case 80: {
+
+            tweetCount_ = input.readInt32();
+            break;
+          }
+          case 89: {
 
             negativeScore_ = input.readDouble();
             break;
           }
-          case 49: {
+          case 97: {
 
             neutralScore_ = input.readDouble();
             break;
           }
-          case 57: {
+          case 105: {
 
             positiveScore_ = input.readDouble();
             break;
@@ -256,28 +295,157 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int NEGATIVESCORE_FIELD_NUMBER = 5;
+  public static final int USERNAME_FIELD_NUMBER = 5;
+  private volatile java.lang.Object userName_;
+  /**
+   * <code>string userName = 5;</code>
+   */
+  public java.lang.String getUserName() {
+    java.lang.Object ref = userName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      userName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string userName = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getUserNameBytes() {
+    java.lang.Object ref = userName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      userName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int USERHANDLE_FIELD_NUMBER = 6;
+  private volatile java.lang.Object userHandle_;
+  /**
+   * <code>string userHandle = 6;</code>
+   */
+  public java.lang.String getUserHandle() {
+    java.lang.Object ref = userHandle_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      userHandle_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string userHandle = 6;</code>
+   */
+  public com.google.protobuf.ByteString
+      getUserHandleBytes() {
+    java.lang.Object ref = userHandle_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      userHandle_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int USERLOCATION_FIELD_NUMBER = 7;
+  private volatile java.lang.Object userLocation_;
+  /**
+   * <code>string userLocation = 7;</code>
+   */
+  public java.lang.String getUserLocation() {
+    java.lang.Object ref = userLocation_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      userLocation_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string userLocation = 7;</code>
+   */
+  public com.google.protobuf.ByteString
+      getUserLocationBytes() {
+    java.lang.Object ref = userLocation_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      userLocation_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int ISVERIFIED_FIELD_NUMBER = 8;
+  private boolean isVerified_;
+  /**
+   * <code>bool isVerified = 8;</code>
+   */
+  public boolean getIsVerified() {
+    return isVerified_;
+  }
+
+  public static final int FOLLOWERSCOUNT_FIELD_NUMBER = 9;
+  private int followersCount_;
+  /**
+   * <code>int32 followersCount = 9;</code>
+   */
+  public int getFollowersCount() {
+    return followersCount_;
+  }
+
+  public static final int TWEETCOUNT_FIELD_NUMBER = 10;
+  private int tweetCount_;
+  /**
+   * <code>int32 tweetCount = 10;</code>
+   */
+  public int getTweetCount() {
+    return tweetCount_;
+  }
+
+  public static final int NEGATIVESCORE_FIELD_NUMBER = 11;
   private double negativeScore_;
   /**
-   * <code>double negativeScore = 5;</code>
+   * <code>double negativeScore = 11;</code>
    */
   public double getNegativeScore() {
     return negativeScore_;
   }
 
-  public static final int NEUTRALSCORE_FIELD_NUMBER = 6;
+  public static final int NEUTRALSCORE_FIELD_NUMBER = 12;
   private double neutralScore_;
   /**
-   * <code>double neutralScore = 6;</code>
+   * <code>double neutralScore = 12;</code>
    */
   public double getNeutralScore() {
     return neutralScore_;
   }
 
-  public static final int POSITIVESCORE_FIELD_NUMBER = 7;
+  public static final int POSITIVESCORE_FIELD_NUMBER = 13;
   private double positiveScore_;
   /**
-   * <code>double positiveScore = 7;</code>
+   * <code>double positiveScore = 13;</code>
    */
   public double getPositiveScore() {
     return positiveScore_;
@@ -309,14 +477,32 @@ private static final long serialVersionUID = 0L;
     if (!getCreatedAtBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, createdAt_);
     }
+    if (!getUserNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, userName_);
+    }
+    if (!getUserHandleBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, userHandle_);
+    }
+    if (!getUserLocationBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, userLocation_);
+    }
+    if (isVerified_ != false) {
+      output.writeBool(8, isVerified_);
+    }
+    if (followersCount_ != 0) {
+      output.writeInt32(9, followersCount_);
+    }
+    if (tweetCount_ != 0) {
+      output.writeInt32(10, tweetCount_);
+    }
     if (negativeScore_ != 0D) {
-      output.writeDouble(5, negativeScore_);
+      output.writeDouble(11, negativeScore_);
     }
     if (neutralScore_ != 0D) {
-      output.writeDouble(6, neutralScore_);
+      output.writeDouble(12, neutralScore_);
     }
     if (positiveScore_ != 0D) {
-      output.writeDouble(7, positiveScore_);
+      output.writeDouble(13, positiveScore_);
     }
     unknownFields.writeTo(output);
   }
@@ -339,17 +525,38 @@ private static final long serialVersionUID = 0L;
     if (!getCreatedAtBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, createdAt_);
     }
+    if (!getUserNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, userName_);
+    }
+    if (!getUserHandleBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, userHandle_);
+    }
+    if (!getUserLocationBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, userLocation_);
+    }
+    if (isVerified_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(8, isVerified_);
+    }
+    if (followersCount_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(9, followersCount_);
+    }
+    if (tweetCount_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(10, tweetCount_);
+    }
     if (negativeScore_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(5, negativeScore_);
+        .computeDoubleSize(11, negativeScore_);
     }
     if (neutralScore_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(6, neutralScore_);
+        .computeDoubleSize(12, neutralScore_);
     }
     if (positiveScore_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(7, positiveScore_);
+        .computeDoubleSize(13, positiveScore_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -375,6 +582,18 @@ private static final long serialVersionUID = 0L;
         .equals(other.getAuthorId());
     result = result && getCreatedAt()
         .equals(other.getCreatedAt());
+    result = result && getUserName()
+        .equals(other.getUserName());
+    result = result && getUserHandle()
+        .equals(other.getUserHandle());
+    result = result && getUserLocation()
+        .equals(other.getUserLocation());
+    result = result && (getIsVerified()
+        == other.getIsVerified());
+    result = result && (getFollowersCount()
+        == other.getFollowersCount());
+    result = result && (getTweetCount()
+        == other.getTweetCount());
     result = result && (
         java.lang.Double.doubleToLongBits(getNegativeScore())
         == java.lang.Double.doubleToLongBits(
@@ -406,6 +625,19 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getAuthorId().hashCode();
     hash = (37 * hash) + CREATEDAT_FIELD_NUMBER;
     hash = (53 * hash) + getCreatedAt().hashCode();
+    hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getUserName().hashCode();
+    hash = (37 * hash) + USERHANDLE_FIELD_NUMBER;
+    hash = (53 * hash) + getUserHandle().hashCode();
+    hash = (37 * hash) + USERLOCATION_FIELD_NUMBER;
+    hash = (53 * hash) + getUserLocation().hashCode();
+    hash = (37 * hash) + ISVERIFIED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsVerified());
+    hash = (37 * hash) + FOLLOWERSCOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + getFollowersCount();
+    hash = (37 * hash) + TWEETCOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + getTweetCount();
     hash = (37 * hash) + NEGATIVESCORE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getNegativeScore()));
@@ -556,6 +788,18 @@ private static final long serialVersionUID = 0L;
 
       createdAt_ = "";
 
+      userName_ = "";
+
+      userHandle_ = "";
+
+      userLocation_ = "";
+
+      isVerified_ = false;
+
+      followersCount_ = 0;
+
+      tweetCount_ = 0;
+
       negativeScore_ = 0D;
 
       neutralScore_ = 0D;
@@ -592,6 +836,12 @@ private static final long serialVersionUID = 0L;
       result.text_ = text_;
       result.authorId_ = authorId_;
       result.createdAt_ = createdAt_;
+      result.userName_ = userName_;
+      result.userHandle_ = userHandle_;
+      result.userLocation_ = userLocation_;
+      result.isVerified_ = isVerified_;
+      result.followersCount_ = followersCount_;
+      result.tweetCount_ = tweetCount_;
       result.negativeScore_ = negativeScore_;
       result.neutralScore_ = neutralScore_;
       result.positiveScore_ = positiveScore_;
@@ -658,6 +908,27 @@ private static final long serialVersionUID = 0L;
       if (!other.getCreatedAt().isEmpty()) {
         createdAt_ = other.createdAt_;
         onChanged();
+      }
+      if (!other.getUserName().isEmpty()) {
+        userName_ = other.userName_;
+        onChanged();
+      }
+      if (!other.getUserHandle().isEmpty()) {
+        userHandle_ = other.userHandle_;
+        onChanged();
+      }
+      if (!other.getUserLocation().isEmpty()) {
+        userLocation_ = other.userLocation_;
+        onChanged();
+      }
+      if (other.getIsVerified() != false) {
+        setIsVerified(other.getIsVerified());
+      }
+      if (other.getFollowersCount() != 0) {
+        setFollowersCount(other.getFollowersCount());
+      }
+      if (other.getTweetCount() != 0) {
+        setTweetCount(other.getTweetCount());
       }
       if (other.getNegativeScore() != 0D) {
         setNegativeScore(other.getNegativeScore());
@@ -973,15 +1244,300 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.lang.Object userName_ = "";
+    /**
+     * <code>string userName = 5;</code>
+     */
+    public java.lang.String getUserName() {
+      java.lang.Object ref = userName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string userName = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserNameBytes() {
+      java.lang.Object ref = userName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string userName = 5;</code>
+     */
+    public Builder setUserName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      userName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userName = 5;</code>
+     */
+    public Builder clearUserName() {
+      
+      userName_ = getDefaultInstance().getUserName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userName = 5;</code>
+     */
+    public Builder setUserNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      userName_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object userHandle_ = "";
+    /**
+     * <code>string userHandle = 6;</code>
+     */
+    public java.lang.String getUserHandle() {
+      java.lang.Object ref = userHandle_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userHandle_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string userHandle = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserHandleBytes() {
+      java.lang.Object ref = userHandle_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userHandle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string userHandle = 6;</code>
+     */
+    public Builder setUserHandle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      userHandle_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userHandle = 6;</code>
+     */
+    public Builder clearUserHandle() {
+      
+      userHandle_ = getDefaultInstance().getUserHandle();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userHandle = 6;</code>
+     */
+    public Builder setUserHandleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      userHandle_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object userLocation_ = "";
+    /**
+     * <code>string userLocation = 7;</code>
+     */
+    public java.lang.String getUserLocation() {
+      java.lang.Object ref = userLocation_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userLocation_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string userLocation = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserLocationBytes() {
+      java.lang.Object ref = userLocation_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userLocation_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string userLocation = 7;</code>
+     */
+    public Builder setUserLocation(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      userLocation_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userLocation = 7;</code>
+     */
+    public Builder clearUserLocation() {
+      
+      userLocation_ = getDefaultInstance().getUserLocation();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string userLocation = 7;</code>
+     */
+    public Builder setUserLocationBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      userLocation_ = value;
+      onChanged();
+      return this;
+    }
+
+    private boolean isVerified_ ;
+    /**
+     * <code>bool isVerified = 8;</code>
+     */
+    public boolean getIsVerified() {
+      return isVerified_;
+    }
+    /**
+     * <code>bool isVerified = 8;</code>
+     */
+    public Builder setIsVerified(boolean value) {
+      
+      isVerified_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isVerified = 8;</code>
+     */
+    public Builder clearIsVerified() {
+      
+      isVerified_ = false;
+      onChanged();
+      return this;
+    }
+
+    private int followersCount_ ;
+    /**
+     * <code>int32 followersCount = 9;</code>
+     */
+    public int getFollowersCount() {
+      return followersCount_;
+    }
+    /**
+     * <code>int32 followersCount = 9;</code>
+     */
+    public Builder setFollowersCount(int value) {
+      
+      followersCount_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 followersCount = 9;</code>
+     */
+    public Builder clearFollowersCount() {
+      
+      followersCount_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int tweetCount_ ;
+    /**
+     * <code>int32 tweetCount = 10;</code>
+     */
+    public int getTweetCount() {
+      return tweetCount_;
+    }
+    /**
+     * <code>int32 tweetCount = 10;</code>
+     */
+    public Builder setTweetCount(int value) {
+      
+      tweetCount_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 tweetCount = 10;</code>
+     */
+    public Builder clearTweetCount() {
+      
+      tweetCount_ = 0;
+      onChanged();
+      return this;
+    }
+
     private double negativeScore_ ;
     /**
-     * <code>double negativeScore = 5;</code>
+     * <code>double negativeScore = 11;</code>
      */
     public double getNegativeScore() {
       return negativeScore_;
     }
     /**
-     * <code>double negativeScore = 5;</code>
+     * <code>double negativeScore = 11;</code>
      */
     public Builder setNegativeScore(double value) {
       
@@ -990,7 +1546,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>double negativeScore = 5;</code>
+     * <code>double negativeScore = 11;</code>
      */
     public Builder clearNegativeScore() {
       
@@ -1001,13 +1557,13 @@ private static final long serialVersionUID = 0L;
 
     private double neutralScore_ ;
     /**
-     * <code>double neutralScore = 6;</code>
+     * <code>double neutralScore = 12;</code>
      */
     public double getNeutralScore() {
       return neutralScore_;
     }
     /**
-     * <code>double neutralScore = 6;</code>
+     * <code>double neutralScore = 12;</code>
      */
     public Builder setNeutralScore(double value) {
       
@@ -1016,7 +1572,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>double neutralScore = 6;</code>
+     * <code>double neutralScore = 12;</code>
      */
     public Builder clearNeutralScore() {
       
@@ -1027,13 +1583,13 @@ private static final long serialVersionUID = 0L;
 
     private double positiveScore_ ;
     /**
-     * <code>double positiveScore = 7;</code>
+     * <code>double positiveScore = 13;</code>
      */
     public double getPositiveScore() {
       return positiveScore_;
     }
     /**
-     * <code>double positiveScore = 7;</code>
+     * <code>double positiveScore = 13;</code>
      */
     public Builder setPositiveScore(double value) {
       
@@ -1042,7 +1598,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>double positiveScore = 7;</code>
+     * <code>double positiveScore = 13;</code>
      */
     public Builder clearPositiveScore() {
       
